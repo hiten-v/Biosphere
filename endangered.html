@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Endangered</title>
+    <style>
+        body
+        {
+            background-image: url("bkg33.jpg");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color:antiquewhite;
+            font-family: "Saira Condensed", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+        #myChart
+        {
+            width:100%;
+            max-width:70%;
+            border-radius: 10px;
+            position: absolute;
+            left: 5rem;
+            top: 10rem;
+            background-color: rgba(183, 177, 167, 0.579);
+            border: 3px solid rgb(193, 187, 187);
+            transition: all ease-out 1s;
+        }
+        .navbar-nav a
+        {
+            margin-right: 4rem;
+            margin-left: 4rem;
+        }
+        .navbar-nav #logout
+        {
+            margin-left:0;
+        }
+        #year
+        {
+            margin-top: 5rem;
+            max-width: 70%;
+        }
+        @media (max-width:980px)
+        {
+            #myChart
+            {
+                max-width: 65%;
+            }
+        }
+        @media (max-width:640px)
+        {
+            #myChart
+            {
+                top:15rem;
+                left: 1rem;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- NAVBAR -->
+        <nav class="navbar fixed-top navbar-expand-xxl bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="home.html">Biosphere</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <a class="nav-link" href="info.html" target="main">Features</a>
+                  <a class="nav-link" href="endangered.html" target="main">Endangered Species</a>
+                  <a class="nav-link" href="https://tribal.nic.in/downloads/FRA/Concerned%20Laws%20and%20Policies/Wildlife%20Protection%20Act,%201972.pdf" target="main">Rules & Regulations</a>
+                  <a class="nav-link" title="sending email" href="mailto:info@cer.org.za,secretary@nba.nic.in">REPORT</a>
+                  <a class="nav-link" href="currS.html" target="main">Current Scenario</a>
+                  <a class="nav-link" href="#about_us">About Us</a>
+                  <form action="signin.html"> 
+                    <button id="logout" type="submit" class="btn btn-outline-light" onclick="signin.html">LogOut</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </nav>
+    </header>
+    <select class="form-select form-select-lg mb-3" data-bs-theme="dark" aria-label="Large select example" name="year" id="year">
+        <option selected>Select The Year</option>
+        <option value="1">2019</option>
+        <option value="2">2020</option>
+        <option value="3">2021</option>
+        <option value="4">2022</option>
+        <option value="5">2023</option>
+    </select>
+    <button class="btn btn-primary" onclick="Myear()" type="submit">Submit</button>
+    <canvas id="myChart"></canvas>
+    <script>
+        function Myear()
+        {
+            const xValues = ["Vertibrates", "Invertibrates", "Plants", "Fungi"];
+            const barColors = [
+            "#b91d47",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+            ];
+
+            let yValues=[];
+            let selval=document.getElementById('year').value;
+            switch(selval)
+            {
+                case "1":
+                    yValues = [9013,5221,15774,170];
+                    break;
+                case "2":
+                    yValues = [9677,5489,20360,239];
+                    break;
+                case "3":
+                    yValues = [10437,6042,23335,270];
+                    break;
+                case "4":
+                    yValues = [10739,6161,24914,294];
+                    break;
+                case "5":
+                    yValues = [11195,6221,26276,324];
+                    break;
+            }
+            new Chart("myChart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+                }]
+            },
+            options: {
+                title: {
+                display: true,
+                text: "Number of Endangered Species",
+                }
+            }
+            });
+            // document.getElementById("myChart").style.color="antiquewhite";
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
